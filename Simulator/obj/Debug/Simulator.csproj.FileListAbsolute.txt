@@ -1,0 +1,10 @@
+C:\Users\Roman\Desktop\OS_Project\Simulator\bin\Debug\Simulator.exe.config
+C:\Users\Roman\Desktop\OS_Project\Simulator\bin\Debug\Simulator.exe
+C:\Users\Roman\Desktop\OS_Project\Simulator\bin\Debug\Simulator.pdb
+C:\Users\Roman\Desktop\OS_Project\Simulator\obj\Debug\Simulator.Form1.resources
+C:\Users\Roman\Desktop\OS_Project\Simulator\obj\Debug\Simulator.Properties.Resources.resources
+C:\Users\Roman\Desktop\OS_Project\Simulator\obj\Debug\Simulator.csproj.GenerateResource.cache
+C:\Users\Roman\Desktop\OS_Project\Simulator\obj\Debug\Simulator.csproj.CoreCompileInputs.cache
+C:\Users\Roman\Desktop\OS_Project\Simulator\obj\Debug\Simulator.exe
+C:\Users\Roman\Desktop\OS_Project\Simulator\obj\Debug\Simulator.pdb
+C:\Users\Roman\Desktop\OS_Project\Simulator\obj\Debug\Simulator.csprojAssemblyReference.cache

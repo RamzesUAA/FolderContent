@@ -1,0 +1,10 @@
+C:\Users\Roman\Desktop\OS_Project\Server\bin\Debug\Server.exe.config
+C:\Users\Roman\Desktop\OS_Project\Server\bin\Debug\Server.exe
+C:\Users\Roman\Desktop\OS_Project\Server\bin\Debug\Server.pdb
+C:\Users\Roman\Desktop\OS_Project\Server\obj\Debug\Server.csprojAssemblyReference.cache
+C:\Users\Roman\Desktop\OS_Project\Server\obj\Debug\Server.Form1.resources
+C:\Users\Roman\Desktop\OS_Project\Server\obj\Debug\Server.Properties.Resources.resources
+C:\Users\Roman\Desktop\OS_Project\Server\obj\Debug\Server.csproj.GenerateResource.cache
+C:\Users\Roman\Desktop\OS_Project\Server\obj\Debug\Server.csproj.CoreCompileInputs.cache
+C:\Users\Roman\Desktop\OS_Project\Server\obj\Debug\Server.exe
+C:\Users\Roman\Desktop\OS_Project\Server\obj\Debug\Server.pdb

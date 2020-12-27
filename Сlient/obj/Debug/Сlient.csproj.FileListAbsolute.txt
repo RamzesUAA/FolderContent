@@ -1,0 +1,10 @@
+C:\Users\Roman\Desktop\OS_Project\Сlient\bin\Debug\Сlient.exe.config
+C:\Users\Roman\Desktop\OS_Project\Сlient\bin\Debug\Сlient.exe
+C:\Users\Roman\Desktop\OS_Project\Сlient\bin\Debug\Сlient.pdb
+C:\Users\Roman\Desktop\OS_Project\Сlient\obj\Debug\Сlient.Form1.resources
+C:\Users\Roman\Desktop\OS_Project\Сlient\obj\Debug\Сlient.Properties.Resources.resources
+C:\Users\Roman\Desktop\OS_Project\Сlient\obj\Debug\Сlient.csproj.GenerateResource.cache
+C:\Users\Roman\Desktop\OS_Project\Сlient\obj\Debug\Сlient.csproj.CoreCompileInputs.cache
+C:\Users\Roman\Desktop\OS_Project\Сlient\obj\Debug\Сlient.exe
+C:\Users\Roman\Desktop\OS_Project\Сlient\obj\Debug\Сlient.pdb
+C:\Users\Roman\Desktop\OS_Project\Сlient\obj\Debug\Сlient.csprojAssemblyReference.cache
