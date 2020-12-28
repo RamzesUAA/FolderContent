@@ -1,0 +1,7 @@
+C:\Users\Roman\Desktop\OS_Project\ServerDemo\bin\Debug\ServerDemo.exe.config
+C:\Users\Roman\Desktop\OS_Project\ServerDemo\bin\Debug\ServerDemo.exe
+C:\Users\Roman\Desktop\OS_Project\ServerDemo\bin\Debug\ServerDemo.pdb
+C:\Users\Roman\Desktop\OS_Project\ServerDemo\obj\Debug\ServerDemo.csprojAssemblyReference.cache
+C:\Users\Roman\Desktop\OS_Project\ServerDemo\obj\Debug\ServerDemo.csproj.CoreCompileInputs.cache
+C:\Users\Roman\Desktop\OS_Project\ServerDemo\obj\Debug\ServerDemo.exe
+C:\Users\Roman\Desktop\OS_Project\ServerDemo\obj\Debug\ServerDemo.pdb

@@ -38,6 +38,7 @@ namespace Сlient
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.allFilesSize_label = new System.Windows.Forms.Label();
+            this.btn_Connect = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -51,7 +52,7 @@ namespace Сlient
             this.txtPath.ReadOnly = true;
             this.txtPath.Size = new System.Drawing.Size(481, 20);
             this.txtPath.TabIndex = 0;
-            this.txtPath.TextChanged += new System.EventHandler(this.txtPath_TextChanged);
+  
             // 
             // label1
             // 
@@ -64,7 +65,7 @@ namespace Сlient
             this.label1.Size = new System.Drawing.Size(40, 18);
             this.label1.TabIndex = 1;
             this.label1.Text = "Path";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+       
             // 
             // txtFormatFile
             // 
@@ -73,7 +74,7 @@ namespace Сlient
             this.txtFormatFile.Name = "txtFormatFile";
             this.txtFormatFile.Size = new System.Drawing.Size(83, 20);
             this.txtFormatFile.TabIndex = 0;
-            this.txtFormatFile.TextChanged += new System.EventHandler(this.txtFormatFile_TextChanged);
+          
             // 
             // formatOfData
             // 
@@ -86,7 +87,6 @@ namespace Сlient
             this.formatOfData.Size = new System.Drawing.Size(56, 18);
             this.formatOfData.TabIndex = 1;
             this.formatOfData.Text = "Format";
-            this.formatOfData.Click += new System.EventHandler(this.formatOfData_Click);
             // 
             // btnOpen
             // 
@@ -112,7 +112,6 @@ namespace Сlient
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(710, 410);
             this.dataGridView1.TabIndex = 4;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // panel1
             // 
@@ -127,11 +126,11 @@ namespace Сlient
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(740, 57);
             this.panel1.TabIndex = 5;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.Thistle;
+            this.panel2.Controls.Add(this.btn_Connect);
             this.panel2.Controls.Add(this.allFilesSize_label);
             this.panel2.Controls.Add(this.dataGridView1);
             this.panel2.Controls.Add(this.btnOpen);
@@ -142,7 +141,6 @@ namespace Сlient
             this.panel2.Padding = new System.Windows.Forms.Padding(15, 15, 15, 55);
             this.panel2.Size = new System.Drawing.Size(740, 480);
             this.panel2.TabIndex = 6;
-            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
             // allFilesSize_label
             // 
@@ -154,6 +152,21 @@ namespace Сlient
             this.allFilesSize_label.Size = new System.Drawing.Size(160, 18);
             this.allFilesSize_label.TabIndex = 5;
             this.allFilesSize_label.Text = "Size of all files: ";
+            // 
+            // btn_Connect
+            // 
+            this.btn_Connect.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(44)))), ((int)(((byte)(68)))));
+            this.btn_Connect.FlatAppearance.BorderSize = 0;
+            this.btn_Connect.Font = new System.Drawing.Font("Consolas", 11.25F);
+            this.btn_Connect.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btn_Connect.Location = new System.Drawing.Point(419, 433);
+            this.btn_Connect.Margin = new System.Windows.Forms.Padding(15);
+            this.btn_Connect.Name = "btn_Connect";
+            this.btn_Connect.Size = new System.Drawing.Size(146, 37);
+            this.btn_Connect.TabIndex = 6;
+            this.btn_Connect.Text = "Connect";
+            this.btn_Connect.UseVisualStyleBackColor = false;
+            this.btn_Connect.Click += new System.EventHandler(this.btn_Connect_Click);
             // 
             // Form1
             // 
@@ -190,6 +203,7 @@ namespace Сlient
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label allFilesSize_label;
+        private System.Windows.Forms.Button btn_Connect;
     }
 }
 

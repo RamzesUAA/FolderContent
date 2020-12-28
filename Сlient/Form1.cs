@@ -6,6 +6,9 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Sockets;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,25 +19,60 @@ namespace Сlient
     {
         private long allFilesSize = 0;
         private List<FileInfo> fileInfoList;
+        private Socket ClientSocket = null;
         public Form1()
         {
             InitializeComponent();
             dataGridView1.ScrollBars = ScrollBars.Vertical;
         }
 
+
+        // Convert a byte array to an Object
+        private List<FileInfo> ByteArrayToObject(byte[] arrBytes)
+        {
+            MemoryStream memStream = new MemoryStream();
+            BinaryFormatter binForm = new BinaryFormatter();
+            memStream.Write(arrBytes, 0, arrBytes.Length);
+            memStream.Seek(0, SeekOrigin.Begin);
+            List<FileInfo> obj = (List<FileInfo>)binForm.Deserialize(memStream);
+
+            return obj;
+        }
+
+        private bool connected = false;
+        private bool openPressed = false;
+        
+
         private void btnOpen_Click(object sender, EventArgs e)
         {
+            if (!connected)
+            {
+                btn_Connect_Click( sender, e);
+            }
+
+         
             setDataGridView();
 
-            using (FolderBrowserDialog fbd = new FolderBrowserDialog() { Description = "Select your path." })
+            using (FolderBrowserDialog fbd = new FolderBrowserDialog() {Description = "Select your path."})
             {
-                if (fbd.ShowDialog() == DialogResult.OK)
+                if ( fbd.ShowDialog() == DialogResult.OK)
                 {
-                    txtPath.Text = fbd.SelectedPath; 
-                    fileInfoList  = ServerDemo(fbd.SelectedPath, txtFormatFile.Text);
+                    txtPath.Text = fbd.SelectedPath;
+                    string path = fbd.SelectedPath;
+
+                    string messageFromClient = path + " " + txtFormatFile.Text;
+
+                    ClientSocket.Send(System.Text.Encoding.ASCII.GetBytes(messageFromClient), 0,
+                        messageFromClient.Length, SocketFlags.None);
+
+                    byte[] MsgFromServer = new byte[9999];
+                    int size = ClientSocket.Receive(MsgFromServer);
+
+
+                    fileInfoList = ByteArrayToObject(MsgFromServer);
+                    SetDataGridWithData();
                 }
             }
-            SetDataGridWithData();
         }
 
         void SetDataGridWithData()
@@ -54,20 +92,7 @@ namespace Сlient
             allFilesSize_label.Text = "Size of all files: "+ (allFilesSize/1024 ).ToString() + " KB";
         }
 
-        List<FileInfo> ServerDemo(string path, string extension)
-        {
-            List<FileInfo> fileInf = new List<FileInfo>();
-            foreach (string item in Directory.GetFiles(path))
-            {
-                var rightExtension = System.IO.Path.GetExtension(item);
-                if (rightExtension == extension)
-                {
-                    fileInf.Add(new FileInfo(item));
-                }
-            }
-            return fileInf;
-        }
-
+    
         private void setDataGridView()
         {
             dataGridView1.Rows.Clear();
@@ -89,39 +114,16 @@ namespace Сlient
             dataGridView1.AllowUserToAddRows = false;
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void btn_Connect_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void txtPath_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtFormatFile_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void formatOfData_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
+            int port = 13000;
+            string IpAddress = "127.0.0.1";
+            ClientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream,
+                ProtocolType.Tcp);
+            IPEndPoint ep = new IPEndPoint(IPAddress.Parse(IpAddress), port);
+            ClientSocket.Connect(ep);
+            MessageBox.Show("server connected");
+            connected = true;
         }
     }
 }
