@@ -29,6 +29,7 @@ namespace Сlient
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.txtPath = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtFormatFile = new System.Windows.Forms.TextBox();
@@ -37,8 +38,8 @@ namespace Сlient
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.allFilesSize_label = new System.Windows.Forms.Label();
             this.btn_Connect = new System.Windows.Forms.Button();
+            this.allFilesSize_label = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -52,7 +53,6 @@ namespace Сlient
             this.txtPath.ReadOnly = true;
             this.txtPath.Size = new System.Drawing.Size(481, 20);
             this.txtPath.TabIndex = 0;
-  
             // 
             // label1
             // 
@@ -65,7 +65,6 @@ namespace Сlient
             this.label1.Size = new System.Drawing.Size(40, 18);
             this.label1.TabIndex = 1;
             this.label1.Text = "Path";
-       
             // 
             // txtFormatFile
             // 
@@ -74,7 +73,6 @@ namespace Сlient
             this.txtFormatFile.Name = "txtFormatFile";
             this.txtFormatFile.Size = new System.Drawing.Size(83, 20);
             this.txtFormatFile.TabIndex = 0;
-          
             // 
             // formatOfData
             // 
@@ -91,6 +89,8 @@ namespace Сlient
             // btnOpen
             // 
             this.btnOpen.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(44)))), ((int)(((byte)(68)))));
+            this.btnOpen.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnOpen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOpen.Font = new System.Drawing.Font("Consolas", 11.25F);
             this.btnOpen.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnOpen.Location = new System.Drawing.Point(579, 433);
@@ -142,21 +142,12 @@ namespace Сlient
             this.panel2.Size = new System.Drawing.Size(740, 480);
             this.panel2.TabIndex = 6;
             // 
-            // allFilesSize_label
-            // 
-            this.allFilesSize_label.AutoSize = true;
-            this.allFilesSize_label.BackColor = System.Drawing.Color.Transparent;
-            this.allFilesSize_label.Font = new System.Drawing.Font("Consolas", 11.25F);
-            this.allFilesSize_label.Location = new System.Drawing.Point(18, 440);
-            this.allFilesSize_label.Name = "allFilesSize_label";
-            this.allFilesSize_label.Size = new System.Drawing.Size(160, 18);
-            this.allFilesSize_label.TabIndex = 5;
-            this.allFilesSize_label.Text = "Size of all files: ";
-            // 
             // btn_Connect
             // 
             this.btn_Connect.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(44)))), ((int)(((byte)(68)))));
+            this.btn_Connect.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_Connect.FlatAppearance.BorderSize = 0;
+            this.btn_Connect.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_Connect.Font = new System.Drawing.Font("Consolas", 11.25F);
             this.btn_Connect.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btn_Connect.Location = new System.Drawing.Point(419, 433);
@@ -168,6 +159,17 @@ namespace Сlient
             this.btn_Connect.UseVisualStyleBackColor = false;
             this.btn_Connect.Click += new System.EventHandler(this.btn_Connect_Click);
             // 
+            // allFilesSize_label
+            // 
+            this.allFilesSize_label.AutoSize = true;
+            this.allFilesSize_label.BackColor = System.Drawing.Color.Transparent;
+            this.allFilesSize_label.Font = new System.Drawing.Font("Consolas", 11.25F);
+            this.allFilesSize_label.Location = new System.Drawing.Point(18, 440);
+            this.allFilesSize_label.Name = "allFilesSize_label";
+            this.allFilesSize_label.Size = new System.Drawing.Size(160, 18);
+            this.allFilesSize_label.TabIndex = 5;
+            this.allFilesSize_label.Text = "Size of all files: ";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -176,6 +178,7 @@ namespace Сlient
             this.ClientSize = new System.Drawing.Size(740, 537);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(756, 576);
             this.MinimizeBox = false;

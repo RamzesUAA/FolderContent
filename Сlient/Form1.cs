@@ -26,8 +26,6 @@ namespace Сlient
             dataGridView1.ScrollBars = ScrollBars.Vertical;
         }
 
-
-        // Convert a byte array to an Object
         private List<FileInfo> ByteArrayToObject(byte[] arrBytes)
         {
             MemoryStream memStream = new MemoryStream();
@@ -35,7 +33,6 @@ namespace Сlient
             memStream.Write(arrBytes, 0, arrBytes.Length);
             memStream.Seek(0, SeekOrigin.Begin);
             List<FileInfo> obj = (List<FileInfo>)binForm.Deserialize(memStream);
-
             return obj;
         }
 
@@ -49,7 +46,6 @@ namespace Сlient
             {
                 btn_Connect_Click( sender, e);
             }
-
          
             setDataGridView();
 
@@ -67,7 +63,6 @@ namespace Сlient
 
                     byte[] MsgFromServer = new byte[9999];
                     int size = ClientSocket.Receive(MsgFromServer);
-
 
                     fileInfoList = ByteArrayToObject(MsgFromServer);
                     SetDataGridWithData();
@@ -88,7 +83,6 @@ namespace Сlient
                     });
                 allFilesSize += fileInfo.Length;
             }
-
             allFilesSize_label.Text = "Size of all files: "+ (allFilesSize/1024 ).ToString() + " KB";
         }
 
@@ -118,11 +112,9 @@ namespace Сlient
         {
             int port = 13000;
             string IpAddress = "127.0.0.1";
-            ClientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream,
-                ProtocolType.Tcp);
+            ClientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             IPEndPoint ep = new IPEndPoint(IPAddress.Parse(IpAddress), port);
             ClientSocket.Connect(ep);
-            MessageBox.Show("server connected");
             connected = true;
         }
     }

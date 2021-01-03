@@ -7,4 +7,3 @@ C:\Users\Roman\Desktop\OS_Project\Сlient\obj\Debug\Сlient.csproj.GenerateResou
 C:\Users\Roman\Desktop\OS_Project\Сlient\obj\Debug\Сlient.csproj.CoreCompileInputs.cache
 C:\Users\Roman\Desktop\OS_Project\Сlient\obj\Debug\Сlient.exe
 C:\Users\Roman\Desktop\OS_Project\Сlient\obj\Debug\Сlient.pdb
-C:\Users\Roman\Desktop\OS_Project\Сlient\obj\Debug\Сlient.csprojAssemblyReference.cache

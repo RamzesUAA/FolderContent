@@ -15,6 +15,8 @@ namespace ServerDemo
 {
     class Program
     {
+        static decimal tm1;
+        private static Mutex mutex = new Mutex();
         static void Main(string[] args)
         {
             int port = 13000;
@@ -34,7 +36,6 @@ namespace ServerDemo
                 Thread UserThread = new Thread(new ThreadStart(() => p.User(ClientSocket)));
                 UserThread.Start();
             }
-            
         }
 
         private byte[] ObjectToByteArray(Object obj)
@@ -53,15 +54,11 @@ namespace ServerDemo
         void Chaching(List<FileInfo> fileInfo)
         {
             cache = MemoryCache.Default;
-            //CacheItemPolicy policy = new CacheItemPolicy();
 
             List<FileInfo> fileContents;
             fileContents = fileInfo;
             cache["filecontents"] = fileContents;
-            //cache.Set("filecontents", fileContents, policy);
         }
-
-
 
         private string[] previousDirectory = null;
 
@@ -73,61 +70,56 @@ namespace ServerDemo
                 return currentDirectory[0] == previousDirectory[0] && currentDirectory[1] == previousDirectory[1];
         }
 
-
         public void User(Socket client)
         {
-            
+           
             while (true)
-            {   
-                byte[] msg = new byte[9999];
-                int size = client.Receive(msg);
-
-
-                //Console.WriteLine(System.Text.Encoding.ASCII.GetString(msg, 0, size));
-
-                string dataFromClient = System.Text.Encoding.ASCII.GetString(msg, 0, size);
-                string[] pathExtension = dataFromClient.Split(' ');
-
-                if (isTheSame(pathExtension))//Timer
+            {
+                try
                 {
-                    using (FileStream fs = File.Open(@"C:\Users\Roman\Desktop\151.txt", FileMode.Open, FileAccess.Write, FileShare.None))
+                    byte[] msg = new byte[9999];
+                    int size = client.Receive(msg);
+
+                    string dataFromClient = System.Text.Encoding.ASCII.GetString(msg, 0, size);
+                    string[] pathExtension = dataFromClient.Split(' ');
+
+                    if (isTheSame(pathExtension) && (DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond - tm1 < 5000))
                     {
-                        Byte[] info = new UTF8Encoding(true).GetBytes("Cache works.");
-                        // Add some information to the file.
-                        fs.Write(info, 0, info.Length);
+                        mutex.WaitOne();
+                        List<FileInfo> fileInfo = cache["filecontents"] as List<FileInfo>;
+                        byte[] msgForClient = ObjectToByteArray(fileInfo);
+
+                        client.Send(msgForClient, 0, msgForClient.Length, SocketFlags.None);
+                        mutex.ReleaseMutex();
                     }
-
-                    List<FileInfo> fileInfo = cache["filecontents"] as List<FileInfo>;
-                    byte[] msgForClient = ObjectToByteArray(fileInfo);
-
-                    client.Send(msgForClient, 0, msgForClient.Length, SocketFlags.None);
-                }
-                else
-                {
-                    previousDirectory = pathExtension;
-                    List<FileInfo> fileInfo = new List<FileInfo>();
-                    foreach (string item in Directory.GetFiles(pathExtension[0]))
+                    else
                     {
-                        var rightExtension = System.IO.Path.GetExtension(item);
-                        if (rightExtension == pathExtension[1])
+                        mutex.WaitOne();
+                        previousDirectory = pathExtension;
+                        List<FileInfo> fileInfo = new List<FileInfo>();
+                        foreach (string item in Directory.GetFiles(pathExtension[0]))
                         {
-                            fileInfo.Add(new FileInfo(item));
+                            var rightExtension = System.IO.Path.GetExtension(item);
+                            if (rightExtension == pathExtension[1])
+                            {
+                                fileInfo.Add(new FileInfo(item));
+                            }
                         }
+
+                        byte[] msgForClient = ObjectToByteArray(fileInfo);
+
+                        client.Send(msgForClient, 0, msgForClient.Length, SocketFlags.None);
+
+                        Chaching(fileInfo);
+                        tm1 = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
+                        mutex.ReleaseMutex();
                     }
-
-
-                    byte[] msgForClient = ObjectToByteArray(fileInfo);
-
-                    client.Send(msgForClient, 0, msgForClient.Length, SocketFlags.None);
-
-                    Chaching(fileInfo);
-
-                    using (FileStream fs = File.Open(@"C:\Users\Roman\Desktop\151.txt", FileMode.Open, FileAccess.Write, FileShare.None))
-                    {
-                        Byte[] info = new UTF8Encoding(true).GetBytes("none");
-                        // Add some information to the file.
-                        fs.Write(info, 0, info.Length);
-                    }
+                }
+                catch
+                {
+                    client.Disconnect(true);
+                    client.Close();
+                    break;
                 }
             }
         }
